@@ -14,6 +14,7 @@ const UserModel = (sequelize, DataTypes) => {
           email: {
             allowNull: false,
             type: DataTypes.STRING,
+            unique: true,
           },
           password: {
             allowNull: false,
@@ -23,8 +24,9 @@ const UserModel = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
           },
     }, {
-        timestamp: false,
+        timestamps: false,
         underscored: true,
+        tableName: 'users',
     });
 
     return User;
