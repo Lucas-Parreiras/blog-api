@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { userService } = require('../services');
 
+const OK = 200;
 const CREATED = 201;
 const CONFLICT = 409;
 
@@ -23,6 +24,13 @@ const userCreate = async (req, res) => {
     return res.status(CREATED).json({ token });
 };
 
+const getAllUsers = async (req, res) => {
+    const { message } = await userService.getAllUsers();
+
+    return res.status(OK).json(message);
+};
+
 module.exports = {
     userCreate,
+    getAllUsers,
 };
