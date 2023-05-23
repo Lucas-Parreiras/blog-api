@@ -42,11 +42,7 @@ const BlogPostModel = (sequelize, DataTypes) => {
     BlogPost.associate = (models) => {
         BlogPost.belongsTo(
             models.User,
-            { foreingKey: 'userId', as: 'users' },
-        );
-        BlogPost.hasMany(
-            models.PostCategory,
-            { foreingKey: 'postId', as: 'post_categories' },
+            { foreingKey: 'userId', as: 'user' },
         );
     };
 

@@ -1,5 +1,6 @@
 const { postsService } = require('../services');
 
+const OK = 200;
 const CREATED = 201;
 const BAD_REQUEST = 400;
 
@@ -16,6 +17,13 @@ const createNewPost = async (req, res) => {
     }
 };
 
+const getAllPosts = async (req, res) => {
+    const { message } = await postsService.getAllPosts();
+
+    return res.status(OK).json(message);
+};
+
 module.exports = {
     createNewPost,
+    getAllPosts,
 };

@@ -1,5 +1,5 @@
 /* eslint-disable max-lines-per-function */
-const { BlogPost, PostCategory } = require('../models');
+const { BlogPost, PostCategory, User, Category } = require('../models');
 const { validateIds } = require('../validation/categoryIdValidation');
 
 const createNewPost = async (postInfo, userId) => {
@@ -19,6 +19,22 @@ const createNewPost = async (postInfo, userId) => {
     return { type: null, message: newBlogPost };
 };
 
+const getAllPosts = async () => {
+    const allPosts = await BlogPost.findAll({
+        include: [
+          {
+            model: User,
+            as: 'user',
+            attributes: { exclude: 'password' },
+          },
+          { model: Category, as: 'categories' },
+        ],
+      });
+
+    return { type: null, message: allPosts };
+};
+
 module.exports = {
     createNewPost,
+    getAllPosts,
 };
