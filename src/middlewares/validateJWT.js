@@ -11,7 +11,7 @@ const autenticateToken = async (req, res, next) => {
     }
     try {
         const decoded = jwt.verify(token, secret);
-        const { type, message } = await userService.getUseyById(decoded.data.userId);
+        const { type, message } = await userService.getUserById(decoded.data.userId);
         if (type) {
             return res.status(UNAUTHORIZED).json({ message: 'Expired or invalid token' });
         }

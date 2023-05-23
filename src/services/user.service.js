@@ -16,10 +16,13 @@ const createNewUser = async ({ displayName, email, password, image }) => {
     return { type: null, message: createdUser };
 };
 
-const getUseyById = async (id) => {
-    const user = await User.findOne({ where: { id } });
+const getUserById = async (id) => {
+    const user = await User.findOne({
+        where: { id },
+        attributes: { exclude: ['password'] },
+    });
     if (!user) {
-        return { type: 'NOT_FOUND', message: 'User not found' };
+        return { type: 'NOT_FOUND', message: 'User does not exist' };
     }
     return { type: null, message: user };
 };
@@ -33,6 +36,6 @@ const getAllUsers = async () => {
 
 module.exports = {
     createNewUser,
-    getUseyById,
+    getUserById,
     getAllUsers,
 };

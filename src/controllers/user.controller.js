@@ -3,6 +3,7 @@ const { userService } = require('../services');
 
 const OK = 200;
 const CREATED = 201;
+const NOT_FOUND = 404;
 const CONFLICT = 409;
 
 const secret = process.env.JWT_SECRET;
@@ -30,7 +31,18 @@ const getAllUsers = async (req, res) => {
     return res.status(OK).json(message);
 };
 
+const getUserById = async (req, res) => {
+    const id = Number(req.params.id);
+    const { type, message } = await userService.getUserById(id);
+    if (type) {
+        return res.status(NOT_FOUND).json({ message });
+    }
+
+    return res.status(OK).json(message);
+};
+
 module.exports = {
     userCreate,
     getAllUsers,
+    getUserById,
 };
