@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 const CategoryModel = (sequelize, DataTypes) => {
     const Category = sequelize.define('Category', {
         id: {
@@ -15,6 +16,13 @@ const CategoryModel = (sequelize, DataTypes) => {
         underscored: true,
         tableName: 'categories',
     });
+
+    Category.associate = (models) => {
+      Category.hasMany(
+        models.PostCategory,
+        { foreingKey: 'categoryId', as: 'psts_categories' },
+    );
+    };
 
     return Category;
 };
