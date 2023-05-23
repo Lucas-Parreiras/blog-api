@@ -27,12 +27,15 @@ const BlogPostModel = (sequelize, DataTypes) => {
           published: {
             allowNull: false,
             type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW(),
           },
           updated: {
             type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW(),
           },
     }, {
         underscored: true,
+        timestamps: false,
         tableName: 'blog_posts',
     });
 
