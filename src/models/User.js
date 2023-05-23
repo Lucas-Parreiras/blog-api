@@ -29,6 +29,13 @@ const UserModel = (sequelize, DataTypes) => {
         tableName: 'users',
     });
 
+    User.associate = (models) => {
+      User.hasMany(
+          models.BlogPost,
+          { foreingKey: 'userId', as: 'blog_posts' },
+          );
+  };
+
     return User;
 };
 
