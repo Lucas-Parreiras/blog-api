@@ -12,6 +12,7 @@ app.get('/', (_request, response) => {
 app.use(express.json());
 
 app.use('/login', routers.loginRouter);
+app.use('/user', routers.userRouter);
 
 // ...
 // Criando o PR!
